@@ -1,8 +1,10 @@
-import asyncio
+import sys
 from mcpserver.server import mcp
 
 def main():
-    asyncio.run(mcp.run(transport="stdio"))
+    # Ensure clean stdio for JSON-RPC communication
+    sys.stderr = sys.__stderr__
+    mcp.run()
 
 if __name__ == "__main__":
     main()
